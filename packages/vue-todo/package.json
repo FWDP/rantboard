@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettier:format": "pnpm exec -- npx prettier --write .",
+    "prettier:check": "pnpm exec -- npx prettier --check ."
   },
   "dependencies": {
     "vue": "^3.3.4"
