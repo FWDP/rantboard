@@ -1,0 +1,36 @@
+name: Format Check
+
+on:
+  push:
+    branches:
+      - main
+      - format_ca
+  pull_request:
+    branches:
+      - main
+      - format_ca
+
+jobs:
+  prettier-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js and pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Format on react-todo
+        run: cd packages/react-todo && pnpm install && pnpm run prettier:format
+
+      - name: Format on svelte-todo
+        run: cd packages/svelte-todo && pnpm install && pnpm run prettier:format
+
+      - name: Format on vanilla-todo
+        run: cd packages/vanilla-todo && pnpm install && pnpm run prettier:format
+
+      - name: Format on vue-todo
+        run: cd packages/vue-todo && pnpm install && pnpm run prettier:format
