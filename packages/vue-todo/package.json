@@ -7,8 +7,8 @@
         "dev": "vite",
         "build": "vue-tsc && vite build",
         "preview": "vite preview",
-        "format": "pnpm exec -- npx prettier --write .",
-        "check": "pnpm exec -- npx prettier --check ."
+        "prettier:format": "pnpm exec -- npx prettier --write .",
+        "prettier:check": "pnpm exec -- npx prettier --check ."
     },
     "dependencies": {
         "vue": "^3.3.4"

@@ -24,13 +24,13 @@ jobs:
           version: 8
 
       - name: Format check on react-todo
-        run: cd packages/react-todo && pnpm install && pnpm run check
+        run: cd packages/react-todo && pnpm install && pnpm run prettier:check
 
       - name: Format check on svelte-todo
-        run: cd packages/svelte-todo && pnpm install && pnpm run check
+        run: cd packages/svelte-todo && pnpm install && pnpm run prettier:check
 
       - name: Format check on vanilla-todo
-        run: cd packages/vanilla-todo && pnpm install && pnpm run check
+        run: cd packages/vanilla-todo && pnpm install && pnpm run prettier:check
 
       - name: Format check on vue-todo
-        run: cd packages/vue-todo && pnpm install && pnpm run check
+        run: cd packages/vue-todo && pnpm install && pnpm run prettier:check
