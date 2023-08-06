@@ -34,3 +34,11 @@ jobs:
 
       - name: Format on vue-todo
         run: cd packages/vue-todo && pnpm install && pnpm run prettier:format
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Auto-format code with Prettier"
+          git push
