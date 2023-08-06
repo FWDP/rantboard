@@ -47,7 +47,7 @@ $ pnpm build
 1. Fork the repository from official FWDP Github
 2. Clone the repository to your local machine
 3. Make changes, follow github commit and pull conventions
-4. Go to github and createa a pull request
+4. Go to github and create a pull request
 5. Wait for admin approval
 
 # HAPPY CODING! ♥
