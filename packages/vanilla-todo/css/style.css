@@ -35,7 +35,7 @@ button {
 button:hover {
   color: #333;
 }
-/* Heading /
+
 h3,
 label[for='new-task'] {
   color: #333;
@@ -62,7 +62,6 @@ input[type="text"]:focus {
   color: #333;
 }
 
-/ New Task /
 label[for='new-task'] {
   display: block;
   margin: 0 0 20px;
@@ -99,7 +98,7 @@ li > .delete:hover {
   color: #CF2323;
 }
 
-/ Completed /
+
 #completed-tasks label {
   text-decoration: line-through;
   color: #888;
