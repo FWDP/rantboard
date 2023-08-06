@@ -7,7 +7,8 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "format": "pnpm exec -- npx prettier --write ."
+        "format": "pnpm exec -- npx prettier --write .",
+        "check": "pnpm exec -- npx prettier --check ."
     },
     "devDependencies": {
         "vite": "^4.4.5"

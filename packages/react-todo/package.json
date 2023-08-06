@@ -8,7 +8,8 @@
         "build": "vite build",
         "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
-        "format": "pnpm exec -- npx prettier --write ."
+        "format": "pnpm exec -- npx prettier --write .",
+        "check": "pnpm exec -- npx prettier --check ."
     },
     "dependencies": {
         "react": "^18.2.0",
