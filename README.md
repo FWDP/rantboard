@@ -2,7 +2,7 @@
 
 Note by Director Mac: if gagawa ng project dapat nasa packages folder
 
-Developed by FWDP using SvelteJS, this is a project where users can freely post their rants.
+Developed by FWDP, this is a project where users can freely post their rants.
 
 This site is inspired by the following:
 - Owl Secrets Freedom Wall: https://owlsecrets-freedomwall.online/
