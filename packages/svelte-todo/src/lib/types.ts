@@ -1,14 +1,15 @@
 export type User = {
-	id: string;
-	firstName: string;
-	lastName: string;
-	todos?: Todo[];
+  id: string;
+  firstName: string;
+  lastName: string;
+  todos?: string[];
 };
 
 export type Todo = {
-	id: string;
-	user: User;
-	text: string;
-	status: 'pending' | 'in-progress' | 'done';
-	createdAt: Date;
+  id: string;
+  user: string;
+  text: string;
+  status: 'pending' | 'in-progress' | 'done';
+  createdAt: Date;
+  updatedAt?: Date;
 };
