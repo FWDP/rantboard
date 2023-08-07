@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Cards from "./components/cards";
+import Modal from "./components/modals/todoModal";
+import Example from "./components/modals/todoModal";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [groups, setGroups] = useState([]);
+
+  const fetchGroups = () => {
+    fetch("http://localhost:3000/Groups")
+      .then((response) => response.json())
+      .then((result) => {
+        setGroups(result);
+      });
+  };
+  useEffect(() => {
+    if (groups.length == 0) {
+      fetchGroups();
+    }
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container mx-auto min-w-2xl mt-16 h-96 bg-white">
+      <div className="grid grid-cols-3 gap-4 text-center">
+        {groups.length > 0 &&
+          groups.map((group) => {
+            return <Cards key={group.id} group={group} />;
+          })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

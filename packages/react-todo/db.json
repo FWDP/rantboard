@@ -1,0 +1,44 @@
+{
+  "Groups": [
+    { "id": 1, "name": "Todo" },
+    { "id": 2, "name": "In Progress" },
+    { "id": 3, "name": "Done" }
+  ],
+  "Todos" : [
+    {
+      "id": 1,
+      "name": "Sample todo",
+      "description":
+        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut nulla in purus bibendum auctor. Aliquam nec vestibulum erat, at tristique tortor. Vivamus id neque tortor. Integer sit amet mi aliquam, consequat leo quis, rhoncus nulla. In in consectetur quam. Aliquam rutrum mauris felis, nec bibendum lorem rhoncus at. Vestibulum.</p>",
+      "group": 1,
+      "updatedAt": "2023-01-07T17:15:16Z"
+    },
+    {
+      "id": 2,
+      "name": "Pinatodo",
+      "description":
+        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut nulla in purus bibendum auctor. Aliquam nec vestibulum erat, at tristique tortor. Vivamus id neque tortor. Integer sit amet mi aliquam, consequat leo quis, rhoncus nulla. In in consectetur quam. Aliquam rutrum mauris felis, nec bibendum lorem rhoncus at. Vestibulum.</p>",
+      "group": 2,
+      "updatedAt": "2023-03-27T10:53:15Z"
+    },
+    {
+      "id": 3,
+      "name": "Pinatodo",
+      "description":
+        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut nulla in purus bibendum auctor. Aliquam nec vestibulum erat, at tristique tortor. Vivamus id neque tortor. Integer sit amet mi aliquam, consequat leo quis, rhoncus nulla. In in consectetur quam. Aliquam rutrum mauris felis, nec bibendum lorem rhoncus at. Vestibulum.</p>",
+      "group": 2,
+      "updatedAt": "2022-08-16T13:52:24Z"
+    },
+    {
+      "id": 4,
+      "name": "Pinakatodo",
+      "description":
+        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut nulla in purus bibendum auctor. Aliquam nec vestibulum erat, at tristique tortor. Vivamus id neque tortor. Integer sit amet mi aliquam, consequat leo quis, rhoncus nulla. In in consectetur quam. Aliquam rutrum mauris felis, nec bibendum lorem rhoncus at. Vestibulum.</p>",
+      "group": 3,
+      "updatedAt": "2023-06-06T22:42:47Z"
+    }
+  ],
+  "Users": [
+    {"id": 1,"name" : "Kervy Cantos", "todoList": [1,2,3,4]}
+  ]
+}
