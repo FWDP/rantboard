@@ -1,44 +1,29 @@
 import { derived, get, writable } from 'svelte/store';
-import type { Todo, User } from './types';
+import type { Todo, TodoCreate, TodoUpdate, User, UserCreate } from './types';
 import { nanoid } from 'nanoid';
 
 const users = writable<User[]>([]);
 
 const todos = writable<Todo[]>([]);
 
-const inProgress = derived(todos, ($todos) => {
+const todosPending = derived(todos, ($todos) => {
+  return $todos.filter((todo) => todo.status === 'pending');
+});
+
+const todosInProgress = derived(todos, ($todos) => {
   return $todos.filter((todo) => todo.status === 'in-progress');
 });
 
 const todosDone = derived(todos, ($todos) => {
-  return $todos.filter((todo) => todo.status === 'in-progress');
+  return $todos.filter((todo) => todo.status === 'done');
 });
 
-const getTodos = () => {
-  return get(todos);
-};
-
-// cascade users also
-const clearTodos = () => {
-  todos.update(() => []);
-};
-
-const createTodo = (userId: string, todo: Todo) => {
-  const user = get(users).find((user) => user.id === userId) as User;
-  const newTodo: Todo = {
-    id: nanoid(),
-    user: user.id,
-    text: todo.text,
-    status: 'pending',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-  // user.todos?.push(newTodo);
-  todos.update(($todos) => [...$todos, newTodo]);
+const storeInvalidator = (todo: Todo) => {
+  todos.update(($todos) => [...$todos, todo]);
   users.update(($users) => {
     $users.find((user) => {
-      if (user.id === userId) {
-        user.todos?.push(newTodo.id);
+      if (user.id === todo.user) {
+        user.todos?.push(todo.user);
         return;
       }
     });
@@ -46,14 +31,53 @@ const createTodo = (userId: string, todo: Todo) => {
   });
 };
 
-const updateTodo = (user: string, todo: string) => {
-  //TODO: Check if user and todo exists inside the user todos props
-  //TODO: Update todo inside todosStore
-  //TODO: Update todo inside user todos props
-  //TODO: Update updatedAt field
+const createTodo = (userId: string, todo: TodoCreate) => {
+  const user = getUser(userId);
+  const newTodo: Todo = {
+    id: nanoid(),
+    user: user.id,
+    title: todo.title,
+    description: todo.description,
+    status: 'pending',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  storeInvalidator(newTodo);
 };
 
-const removeTodo = (user: string, todo: Todo) => {};
+const getTodo = (id: string): Todo => {
+  return get(todos).find((todo) => todo.id === id) as Todo;
+};
 
-const createUser = (user: User) => {};
-const removeUser = (user: User) => {};
+const updateTodo = (todo: TodoUpdate) => {
+  const currentTodo = getTodo(todo.id);
+  const updatedTodo: Todo = {
+    ...currentTodo,
+    ...todo,
+    updatedAt: new Date(),
+  };
+  storeInvalidator(updatedTodo);
+};
+
+const removeTodo = (todoId: string) => {
+  todos.update(($todos) => $todos.filter((todo) => todo.id !== todoId));
+};
+
+const getUser = (id: string) => {
+  return get(users).find((user) => user.id === id) as User;
+};
+
+const createUser = (user: UserCreate) => {};
+
+export {
+  todos as todoStore,
+  users as userStore,
+  todosPending,
+  todosInProgress,
+  todosDone,
+  createTodo,
+  getTodo,
+  updateTodo,
+  removeTodo,
+  getUser,
+};

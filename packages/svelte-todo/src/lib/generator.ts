@@ -1,6 +1,7 @@
-import type { Todo, User } from './types';
+import type { Todo, TodoCreate, User } from './types';
 import { nanoid } from 'nanoid';
 import { faker } from '@faker-js/faker';
+import { userStore, todoStore } from './stores';
 
 enum Status {
   Pending = 'pending',
@@ -11,6 +12,7 @@ enum Status {
 const generateUser = (): User => {
   return {
     id: nanoid(),
+    avatar: faker.image.avatarGitHub(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     todos: [],
@@ -22,19 +24,35 @@ const generateTodo = (user: string): Todo => {
   return {
     id: nanoid(),
     user,
-    text: faker.lorem.sentence(),
+    title: faker.lorem.sentence({ min: 3, max: 6 }),
+    description: faker.lorem.paragraphs(),
     status: faker.helpers.enumValue(Status),
     createdAt: date,
     updatedAt: date,
   };
 };
 
-export const generateUserWithTodos = (todos?: number): User => {
-  const user = generateUser();
-  const todoCount = todos || faker.datatype.number({ min: 1, max: 10 });
+export const generateTodoCreate = (user: string): TodoCreate => {
+  return {
+    user,
+    title: faker.lorem.sentence({ min: 3, max: 6 }),
+    description: faker.lorem.paragraphs(),
+    status: faker.helpers.enumValue(Status),
+  };
+};
+
+export const generateUserWithTodos = (count?: number): User => {
+  const generatedUser = generateUser();
+  const generatedTodos: Todo[] = [];
+  const todoCount = count || faker.number.int({ min: 1, max: 10 });
   for (let i = 0; i < todoCount; i++) {
-    const todo = generateTodo(user.id);
-    user.todos?.push(todo.id);
+    const todo = generateTodo(generatedUser.id);
+    generatedTodos.push(todo);
   }
-  return user;
+  generatedTodos.forEach((todo) => {
+    generatedUser.todos?.push(todo.id);
+  });
+  todoStore.update((todos) => [...todos, ...generatedTodos]);
+  userStore.update((users) => [...users, generatedUser]);
+  return generatedUser;
 };
