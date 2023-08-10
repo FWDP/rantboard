@@ -40,10 +40,10 @@
   <button on:click={generateToSelectedUser} disabled={!selected}>Generate</button>
 </div>
 
-<div class="flex flex-col md:flex-row">
-  <div class="basis-1/3 border-red-500 border">
+<div class="flex flex-col md:flex-row bg-white m-4 gap-4">
+  <div class="basis-1/3 border bg-[#ECECEF]">
     <div class="flex flex-col">
-      <h1 class="text-center">Pending</h1>
+      <h1 class="p-4">Pending</h1>
     </div>
     <div>
       {#each $todosPending as todo}
@@ -51,9 +51,9 @@
       {/each}
     </div>
   </div>
-  <div class="basis-1/3 border-red-500 border">
+  <div class="basis-1/3 border bg-[#ECECEF]">
     <div class="flex flex-col">
-      <h1 class="text-center">In Progress</h1>
+      <h1 class="p-4">In Progress</h1>
     </div>
     <div>
       {#each $todosInProgress as todo}
@@ -61,9 +61,9 @@
       {/each}
     </div>
   </div>
-  <div class="basis-1/3 border-red-500 border">
+  <div class="basis-1/3 border bg-[#ECECEF]">
     <div class="flex flex-col">
-      <h1 class="text-center">Done</h1>
+      <h1 class="p-4">Done</h1>
     </div>
     <div>
       {#each $todosDone as todo}
@@ -72,7 +72,6 @@
     </div>
   </div>
 </div>
-
 <p>
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 </p>

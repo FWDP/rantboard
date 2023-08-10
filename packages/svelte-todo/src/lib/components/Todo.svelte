@@ -6,10 +6,10 @@
   export let todo: Todo;
 </script>
 
-<div class="flex flex-col p-5 rounded-full shadow-lg shadow-gray-400">
-  <div class="text-left text-lg">{todo.title}</div>
+<div class="flex flex-col p-5 m-4 rounded-md shadow-sm bg-white shadow-gray-400">
+  <div class="text-left text-lg font-semibold">{todo.title}</div>
   <div class="flex flex-row">
-    <span class="flex-1 basis-10/12 pt-5"
+    <span class="flex-1 basis-10/12 pt-5 text-sm"
       >{formatRelative(subDays(new Date(), 6), todo.createdAt)}</span
     >
     <span
