@@ -46,7 +46,7 @@ function Todo({ todo }) {
                     >
                         <h5 className="font-semibold ">{todo.name}</h5>
                         <div className="w-12">
-                            <img src={avatar} className="w-full rounded-full" />
+                            <img src={todo.userPhoto ?? avatar} className="w-full rounded-full" />
                         </div>
                     </div>
                     <p className="text-start pl-6 text-gray-400 text-sm hover:text-gray-300">

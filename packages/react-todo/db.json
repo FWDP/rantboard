@@ -15,18 +15,26 @@
   ],
   "todos": [
     {
-      "groupId": 1,
+      "groupId": 2,
       "description": "",
       "name": "asdasd",
       "id": "affac351-87fa-4a26-a971-47cb05642c91",
-      "updatedAt": "2023-08-09T09:10:42.357Z"
+      "updatedAt": "2023-08-09T09:10:42.357Z",
+      "userPhoto": "https://res.cloudinary.com/dmm1qisfm/image/upload/v1692012721/TodoUsers/dimmf9bljwqttpmv7uxb.jpg"
     },
     {
       "groupId": 1,
-      "description": "<p>asdasd</p>",
+      "description": "<p><strong>asdasdasd</strong></p>",
       "name": "asdasd",
       "id": "16fcc608-82fd-438f-969b-b18011002abc",
       "updatedAt": "2023-08-09T09:10:46.685Z"
+    },
+    {
+      "groupId": 1,
+      "description": "",
+      "name": "asdad",
+      "id": "efe7d67b-3f94-4b73-b54c-cf0060a92b93",
+      "updatedAt": "2023-08-13T18:35:45.882Z"
     }
   ],
   "users": [

@@ -6,6 +6,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import RichTextInput from "../inputs/richText";
 import { message } from "antd";
 import { v4 as uuidv4 } from "uuid";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { CloudinaryUploadWidget } from "../inputs/CloudinaryUploadWidget";
 
 function TodoModal({ isOpen, onClose, todoData }) {
     if (!isOpen) return null;
@@ -16,6 +18,7 @@ function TodoModal({ isOpen, onClose, todoData }) {
     const [editDescription, setEditDescription] = useState(false);
     const [editName, setEditName] = useState(todoData ? false : true);
     const [defaultGroup, setDefaultGroup] = useState("");
+    const [imageUrl, setImageUrl] = useState(todoData?.userPhoto ?? avatar);
 
     const initialValues = {
         groupId: todoData?.groupId ?? "",
@@ -26,6 +29,12 @@ function TodoModal({ isOpen, onClose, todoData }) {
 
     const { handleSubmit, setValue, control, register, reset, getValues } = useForm({
         defaultValues: initialValues,
+    });
+
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: "TodoUsers",
+        },
     });
 
     const fetchGroups = () => {
@@ -74,6 +83,10 @@ function TodoModal({ isOpen, onClose, todoData }) {
                 : (newData[key] = data[key]);
         }
         return newData;
+    };
+    const onUpload = (result) => {
+        setValue("userPhoto", result.secure_url);
+        setImageUrl(result.secure_url);
     };
 
     const onSubmit = async () => {
@@ -222,15 +235,18 @@ function TodoModal({ isOpen, onClose, todoData }) {
                                             </div>
                                             <div className="mt-12">
                                                 <img
-                                                    src={avatar}
+                                                    src={imageUrl}
                                                     className="w-6/12 mx-auto rounded-full"
                                                 />
                                                 <h3
                                                     title="Click to Edit"
                                                     className="font-bold text-center mt-4"
-                                                >
-                                                    John Doe
-                                                </h3>
+                                                ></h3>
+
+                                                <div className="flex flex-col items-center w-full">
+                                                    <CloudinaryUploadWidget onUpload={onUpload} />
+                                                    <h3 className="mt-4 font-semibold">John Doe</h3>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="items-center gap-2 mt-3 sm:flex w-12/12 justify-end">
